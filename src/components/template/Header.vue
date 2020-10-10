@@ -3,9 +3,9 @@
     <a class="toogle" @click="toggleMenu" v-if="!hideToogle">
       <i class="fa fa-lg" :class="icon"></i>
     </a>
-    <h1 class="title">
+    <div class="title">
       <router-link to="/home" >{{title}}</router-link>
-    </h1>
+    </div>
     <UserDropdwon v-if="!hideUserDropdwon" />
   </header>
 </template>
@@ -50,6 +50,7 @@ export default {
     font-weight: 100;
     flex-grow: 1;
     text-align: center;
+    margin: auto
   }
 
   .title a {

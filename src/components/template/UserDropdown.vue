@@ -40,6 +40,7 @@ export default {
     font-weight: 100;
     height: 100%;
     padding: 0px 20px;
+    font-size:.9rem
   }
   .user-dropdwon:hover {
     background-color: rgba(0, 0, 0, 0.2);
@@ -47,11 +48,11 @@ export default {
   }
 
   .user-dropdwon-img {
-    margin: 0px 10px;
+    margin: 0px 8px;
   }
 
   .user-dropdwon-img > img {
-    max-height: 30px;
+    max-height: 25px;
     border-radius: 5px;
   }
 
@@ -63,6 +64,7 @@ export default {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 10px;
     z-index: 1;
+    font-size:.9rem;
 
     display:flex;
     flex-direction: column;

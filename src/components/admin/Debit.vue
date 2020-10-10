@@ -1,6 +1,6 @@
 <template>
   <div class="debit">
-    <PageTitle icon="fa fa-cogs" main="Deposito" sub="Painel do Banco" />
+    <PageTitle icon="fa fa-handshake-o" main="Deposito" sub="Painel do Banco" />
   </div>
 </template>
 

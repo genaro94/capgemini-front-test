@@ -4,15 +4,21 @@
       <i class="fa fa-lg" :class="icon"></i>
     </a>
     <h1 class="title">{{title}}</h1>
+    <UserDropdwon v-if="!hideUserDropdwon" />
   </header>
 </template>
 
 <script>
+
+import UserDropdwon from './UserDropdown'
+
 export default {
   name:'Header',
+  components: { UserDropdwon },
   props: {
     title: String,
-    hideToogle: Boolean
+    hideToogle: Boolean,
+    hideUserDropdwon: Boolean
   },
   computed: {
     icon() {
@@ -54,10 +60,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor:pointer
+    cursor:pointer;
   }
 
   header.header > a.toogle:hover {
     background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
   }
 </style>

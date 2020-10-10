@@ -1,7 +1,11 @@
 <template>
   <div id='app' :class="{'hide-menu' : !isMenuVisible}">
 
-  <Header title="Capgemini" :hideToogle="false"></Header>
+  <Header title="Capgemini" 
+          :hideToogle="false"
+          :hideUserDropdwon="false"
+  >
+  </Header>
   <Menu></Menu>
   <Content></Content>
   <Footer></Footer>

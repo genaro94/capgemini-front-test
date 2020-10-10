@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <span>Copyrght Capgemini © 2020</span>
+    <span>Copyrght © Capgemini 2020</span>
   </footer>
 </template>
 

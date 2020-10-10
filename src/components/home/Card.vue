@@ -46,9 +46,9 @@ export default {
         align-items: flex-end;
     }
     .cards-title {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
     }
     .cards-value {
-        font-size: 2rem;
+        font-size: 1.1rem;
     }
 </style>

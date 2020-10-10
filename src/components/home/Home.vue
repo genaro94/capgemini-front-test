@@ -4,9 +4,14 @@
         sub="Painel do Banco" />
 
     <div class="cards">
-      <Card class="cards-details" title="Saldo" :value="account.balance" icon="fa fa-folder" color="#d54d50" />
-      <Card class="cards-details" title="Saque" :value="0" icon="fa fa-file" color="#3bc480" />
-      <Card class="cards-details" title="Deposito" :value="0" icon="fa fa-folder" color="#3282cd" />
+      <Card class="cards-details" title="Saldo" :value="account.balance" 
+            icon="fa fa-money" color="#3bc480" />
+      
+      <Card class="cards-details" title="Saque" value="Realizar operação" 
+            icon="fa fa-handshake-o" color="#d54d50" />
+      
+      <Card class="cards-details" title="Depósito" value="Realizar operação" 
+            icon="fa fa-bar-chart" color="#3282cd" />
     </div>
   </div>
 </template>

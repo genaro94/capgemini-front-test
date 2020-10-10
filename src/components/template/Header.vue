@@ -3,7 +3,9 @@
     <a class="toogle" @click="toggleMenu" v-if="!hideToogle">
       <i class="fa fa-lg" :class="icon"></i>
     </a>
-    <h1 class="title">{{title}}</h1>
+    <h1 class="title">
+      <router-link to="/home" >{{title}}</router-link>
+    </h1>
     <UserDropdwon v-if="!hideUserDropdwon" />
   </header>
 </template>
@@ -48,6 +50,16 @@ export default {
     font-weight: 100;
     flex-grow: 1;
     text-align: center;
+  }
+
+  .title a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .title a:hover {
+    color: #fff;
+    text-decoration: none;
   }
 
   header.header > a.toogle {

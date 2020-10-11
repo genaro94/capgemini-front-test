@@ -18,6 +18,7 @@
 <script>
 
 import PageTitle from '@/components/template/PageTitle'
+
 import FormDebit from './deposit/FormDebit'
 
 export default {

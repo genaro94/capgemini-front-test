@@ -1,6 +1,5 @@
 <template>
     <div class="form-debit">
-        {{account}}
         <b-form @submit="approve">
             <b-row>
                 <b-col md="6" sm="12">
@@ -33,7 +32,7 @@
                 </b-col>
                 <b-col md="4" sm="12">
                     <b-form-group label="Valor a Depositar" label-for="value">
-                        <b-form-input id="value" type="text" v-model.lazy="account.value"
+                        <b-form-input id="value" type="text" v-model="account.value"
                          v-money="money" required/>
                     </b-form-group>
                 </b-col>

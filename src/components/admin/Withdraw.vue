@@ -5,8 +5,8 @@
      <div class="admin-page-debit">
       <b-card no-body>
         <b-tabs card>
-          <b-tab title="Tab 1" active>
-            <b-card-text>Tab contents 1</b-card-text>
+          <b-tab title="Sacar" active>
+            <FormWithdraw />
           </b-tab>
         </b-tabs>
       </b-card>
@@ -17,11 +17,12 @@
 </template>
 
 <script>
-
 import PageTitle from '@/components/template/PageTitle'
+
+import FormWithdraw from './withdraw/FormWithdraw'
 
 export default {
   name: 'Withdraw',
-  components: { PageTitle }
+  components: { PageTitle, FormWithdraw }
 }
 </script>

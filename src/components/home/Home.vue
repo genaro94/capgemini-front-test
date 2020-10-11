@@ -19,21 +19,25 @@
 <script>
 
 import PageTitle from '@/components/template/PageTitle'
-import Card from './Card'
-import axios from 'axios'
-import { baseApiUrl } from '@/global'
+import api from '@/utils/api'
 
+import Card from './Card'
 export default {
   name: 'Home',
   components: { PageTitle, Card },
   data: function() {
     return {
-      account: {}
+      account: {}, 
     }
   },
   methods: {
-    getBalance() {
-      axios.get(`${baseApiUrl}/balances`).then(res => this.account = res.data)
+    async getBalance() {
+      try{
+        const balance = await api.get('balances', this.account)
+        this.account  = balance.data
+      }catch(error){
+          this.$toasted.error(error.response.data.message)
+      }
     }
   },
   mounted(){

@@ -16,13 +16,13 @@ const routes = [
 
   {
     name: 'deposit',
-    path: '/admin/deposit',
+    path: '/admin/deposits',
     component: Debit
   },
 
   {
     name: 'withdraw',
-    path: '/admin/withdraw',
+    path: '/admin/withdraws',
     component: Withdraw
   }, 
 ]

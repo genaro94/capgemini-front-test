@@ -1,5 +1,5 @@
 <template>
-  <aside class="menu" v-show="isMenuVisible">
+  <aside class="menu" v-show="showMenu">
     <div class="submenu">
       <router-link to="/admin/deposits" class="mb-2 mt-2">Saque</router-link>
       <router-link to="/admin/withdraws" class="mb-2">Depósito</router-link>
@@ -9,11 +9,13 @@
 
 <script>
 
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 
 export default {
   name:'Menu',
-  computed: mapState(['isMenuVisible'])
+  props: {
+    showMenu: { type: Boolean, default: false, required: true }
+  }
 }
 </script>
 

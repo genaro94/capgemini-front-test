@@ -1,30 +1,58 @@
 <template>
-  <div id='app' :class="{'hide-menu' : !isMenuVisible}">
-
-  <Header title="Banco Capgemini" 
-          :hideToogle="false"
-          :hideUserDropdwon="false"
-  >
-  </Header>
-  <Menu></Menu>
-  <Content></Content>
-  <Footer></Footer>
-
+  <div id='app' :class="{'hide-menu' : !showToggle}">
+    <Header title="Banco Capgemini" 
+            :showToggle="showToggle"
+            :toggleMenu="toggleMenu"
+            :showButton="showButton"
+            :logout="logout"
+    />
+    <Menu :showMenu="showToggle" />
+    <Content/>
+    <Footer/>
   </div>
-
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import Header from '@/components/template/Header'
 import Menu from '@/components/template/Menu'
 import Content from '@/components/template/Content'
 import Footer from '@/components/template/Footer'
+import api from '@/utils/api'
 
 export default {
   name: 'App',
   components: {Header, Menu, Content, Footer},
-  computed: mapState(['isMenuVisible'])
+  data: function() {
+      return {
+        user: {},
+        showToggle: false,
+        showButton: false
+      }
+  },
+  methods: {
+    async getUser() {
+      if(localStorage.getItem('__knowledge_user')) {
+        try{        
+          const userDetail = await api.get('users/details')
+          this.user  = userDetail.data
+          this.showButton = true;
+        }catch(error){
+            this.$toasted.error(error.response.data.message)
+        }
+      }
+    },
+    logout() {
+      this.showButton = false;
+      localStorage.removeItem('__knowledge_user')
+      this.$router.push({name: 'auth'})      
+    },
+    toggleMenu() {
+      this.showToggle = !this.showToggle
+    }    
+  },
+  created() {
+    this.getUser()
+  }
 
 }
 </script>

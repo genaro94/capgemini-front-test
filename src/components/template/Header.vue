@@ -1,12 +1,12 @@
 <template>
   <header class="header">
-    <a class="toogle" @click="toggleMenu" v-if="!hideToogle">
+    <a class="toogle" @click="toggleMenu" v-if="showButton">
       <i class="fa fa-lg" :class="icon"></i>
     </a>
     <div class="title">
       <router-link to="/home" >{{title}}</router-link>
     </div>
-    <UserDropdwon v-if="!hideUserDropdwon" />
+    <UserDropdwon  v-if="showButton" :logout="logout" />
   </header>
 </template>
 
@@ -19,17 +19,17 @@ export default {
   components: { UserDropdwon },
   props: {
     title: String,
-    hideToogle: Boolean,
-    hideUserDropdwon: Boolean
+    toggleMenu: Function,
+    showToggle: Boolean,
+    showButton: Boolean,
+    logout: Function
   },
   computed: {
     icon() {
-      return this.$store.state.isMenuVisible ? 'fa-angle-left' : 'fa-angle-right'
-    }
-  },
-  methods: {
-    toggleMenu() {
-      this.$store.commit('toggleMenu')
+      return this.showToggle ? 'fa-angle-left' : 'fa-angle-right'
+    },
+    token() {
+      return localStorage.getItem('__knowledge_user')
     }
   }
 }

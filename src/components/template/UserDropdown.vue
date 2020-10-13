@@ -1,29 +1,32 @@
 <template>
   <div class="user-dropdwon">
     <div class="user-button">
-      <span class="d-none d-sm-block" >{{user.name}}</span>
+      <span class="d-none d-sm-block" ></span>
       <div class="user-dropdwon-img">
-        <Gravatar :email="user.email" alt="User" />
+        <Gravatar alt="User" />
       </div>
       <i class="fa fa-angle-down"></i>
     </div>
 
     <div class="user-dropdwon-content">
-      <a href><i class="fa fa-sign-out" ></i>Sair</a>
+      <a href @click.prevent="logout">
+        <i class="fa fa-sign-out" ></i>
+        Sair
+      </a>
     </div>
 
   </div>
 </template>
 
 <script>
-
-import { mapState } from 'vuex'
 import Gravatar from 'vue-gravatar'
 
 export default {
   name: 'UserDropdown',
   components: { Gravatar },
-  computed:  mapState(['user'])
+  props: {
+    logout: Function
+  }
 }
 </script>
 

@@ -6,6 +6,8 @@ import money from 'v-money'
 
 import App from './App.vue'
 import './config/bootstrap'
+import './config/axios'
+import './config/mq'
 import store from './config/store'
 import router from './config/router'
 

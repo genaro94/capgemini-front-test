@@ -1,4 +1,4 @@
-# capgemini-front
+# Capgemini Front
 
 ## Project setup
 

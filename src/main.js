@@ -7,8 +7,6 @@ import money from 'v-money'
 import App from './App.vue'
 import './config/bootstrap'
 import './config/axios'
-import './config/mq'
-import store from './config/store'
 import router from './config/router'
 
 Vue.config.productionTip = false
@@ -17,7 +15,6 @@ Vue.use(VueTheMask)
 Vue.use(money, {precision: 2})
 
 new Vue({
-  store,
   router,
   render: h => h(App),
 }).$mount('#app')

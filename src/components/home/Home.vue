@@ -17,9 +17,6 @@
 </template>
 
 <script>
-
-// import Header from '@/components/template/Header'
-// import Menu from '@/components/template/Menu'
 import PageTitle from '@/components/template/PageTitle'
 import Loading from '@/components/template/Loading'
 import api from '@/utils/api'

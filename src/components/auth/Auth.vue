@@ -27,8 +27,6 @@ export default {
     async signin(){
           try{
             const userAuth = await api.post('account/login', {email: this.email, password: this.password})
-            // this.$store.commit('setUser', userAuth.data.user)
-            console.log(userAuth.data);
             if(userAuth.data.token) {
               localStorage.setItem('__knowledge_user', JSON.stringify(userAuth.data.token))
               this.$router.push({path: '/home'})
@@ -36,8 +34,6 @@ export default {
 
           }catch(error){
             this.$toasted.error(error.response.data.message)
-
-            console.log("error")
           }
       },
   },

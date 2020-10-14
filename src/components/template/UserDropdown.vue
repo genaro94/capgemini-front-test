@@ -1,7 +1,7 @@
 <template>
   <div class="user-dropdwon">
     <div class="user-button">
-      <span class="d-none d-sm-block" ></span>
+      <span class="d-none d-sm-block" >{{user.name}}</span>
       <div class="user-dropdwon-img">
         <Gravatar alt="User" />
       </div>
@@ -21,11 +21,33 @@
 <script>
 import Gravatar from 'vue-gravatar'
 
+import api from '@/utils/api'
 export default {
   name: 'UserDropdown',
   components: { Gravatar },
   props: {
     logout: Function
+  },
+  data: function() {
+    return {
+      user: {}
+    }
+  },
+  methods: {
+        async getUser() {
+      if(localStorage.getItem('__knowledge_user')) {
+        try{        
+          const userDetail = await api.get('users/details')
+          this.user  = userDetail.data.user
+        }catch(error){
+            this.$toasted.error(error.response.data.message)
+        }
+      }
+    },
+  },
+
+    created() {
+    this.getUser()
   }
 }
 </script>

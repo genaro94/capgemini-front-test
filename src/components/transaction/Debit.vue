@@ -31,6 +31,6 @@ export default {
 
 <style>
 .transaction {
-  padding: 40px;
+  padding: 30px;
 }
 </style>

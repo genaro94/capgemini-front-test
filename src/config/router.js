@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '@/components/home/Home'
-import Debit from '@/components/admin/Debit'
-import Withdraw from '@/components/admin/Withdraw'
+import Debit from '@/components/transaction/Debit'
+import Withdraw from '@/components/transaction/Withdraw'
 import Auth from '@/components/auth/Auth'
 
 Vue.use(VueRouter)
@@ -18,14 +18,14 @@ const routes = [
 
   {
     name: 'deposit',
-    path: '/admin/deposits',
+    path: '/transaction/deposits',
     component: Debit,
     meta: {requiredAuth: true}
   },
 
   {
     name: 'withdraw',
-    path: '/admin/withdraws',
+    path: '/transaction/withdraws',
     component: Withdraw,
     meta: {requiredAuth: true}
   }, 

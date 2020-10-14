@@ -9,9 +9,9 @@
         <Card class="cards-details" title="Saldo" :value="account.balance" 
               icon="fa fa-money" color="#3bc480" />
         <Card class="cards-details" title="Saque" value="Realizar operação" 
-              icon="fa fa-handshake-o" color="#d54d50" :goToRoute="() => goToRoute('/admin/withdraws')" />        
+              icon="fa fa-handshake-o" color="#d54d50" :goToRoute="() => goToRoute('/transaction/withdraws')" />        
         <Card class="cards-details" title="Depósito" value="Realizar operação" 
-              icon="fa fa-bar-chart" color="#3282cd" :goToRoute="() => goToRoute('/admin/deposits')" />
+              icon="fa fa-bar-chart" color="#3282cd" :goToRoute="() => goToRoute('/transaction/deposits')" />
       </div>
     </div>    
   </div>
@@ -69,6 +69,6 @@ export default {
   }
 
   .home {
-    padding-left: 40px;
+    padding: 30px;
   }
 </style>

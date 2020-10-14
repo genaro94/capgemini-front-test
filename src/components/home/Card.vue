@@ -27,9 +27,8 @@ export default {
         flex: 1;
         display: flex;
         border-radius: 8px;
-        margin-right: 20px;
-        margin-bottom: 20px;
         padding: 20px;
+        margin: 0px 5px 0 5px;
 
     }
     .cards-icon {

@@ -84,6 +84,7 @@ export default {
     color: #fff;
     border: none;
     background-color: transparent;
+    margin-left: 10px;
   }
 
   .icon:focus {
@@ -92,5 +93,6 @@ export default {
 
   .icon:hover {
     color: #fff;
+    text-decoration: none;
   }
 </style>

@@ -1,19 +1,19 @@
 <template>
-  <div class="cards">
-    <div class="cards-icon">
-      <i :class="icon" :style="style"></i>
-    </div>
-    <div class="cards-info">
-      <span class="cards-title">{{title}}</span>
-      <span class="cards-value">{{value}}</span>
-    </div>
-  </div>
+    <button class="cards" @click="goToRoute">
+      <div class="cards-icon">
+        <i :class="icon" :style="style"></i>
+      </div>
+      <div class="cards-info">
+        <span class="cards-title">{{title}}</span>
+        <span class="cards-value">{{value}}</span>
+      </div>
+    </button>
 </template>
 
 <script>
 export default {
   name: 'Card',
-  props: ['title', 'value', 'icon', 'color'],
+  props: ['title', 'value', 'icon', 'color', 'goToRoute'],
   computed: {
     style() {
       return "color: " + (this.color || '#000')

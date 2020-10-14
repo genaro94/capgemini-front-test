@@ -24,14 +24,11 @@ export default {
     }
   },
   methods: {
-    async signin(){
+      async signin(){
           try{
             const userAuth = await api.post('account/login', {email: this.email, password: this.password})
-            if(userAuth.data.token) {
-              localStorage.setItem('__knowledge_user', JSON.stringify(userAuth.data.token))
-              this.$router.push({path: '/home'})
-            }
-
+            await localStorage.setItem('__knowledge_user', JSON.stringify(userAuth.data.token))
+            this.$router.push({path: '/home'})
           }catch(error){
             this.$toasted.error(error.response.data.message)
           }
@@ -47,7 +44,7 @@ export default {
 
 <style>
   .auth-content {
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;

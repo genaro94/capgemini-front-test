@@ -1,12 +1,12 @@
 <template>
   <header class="header">
-    <a class="toogle" @click="toggleMenu" v-if="!hideToogle">
-      <i class="fa fa-lg" :class="icon"></i>
-    </a>
+    <button v-if="hasBackButton" @click="goBack" class="icon">
+      <i class="fa fa-lg fa-angle-left"></i>
+    </button>  
     <div class="title">
       <router-link to="/home" >{{title}}</router-link>
     </div>
-    <UserDropdwon v-if="!hideUserDropdwon" />
+    <UserDropdwon :logout="logout" />
   </header>
 </template>
 
@@ -19,30 +19,28 @@ export default {
   components: { UserDropdwon },
   props: {
     title: String,
-    hideToogle: Boolean,
-    hideUserDropdwon: Boolean
-  },
-  computed: {
-    icon() {
-      return this.$store.state.isMenuVisible ? 'fa-angle-left' : 'fa-angle-right'
-    }
+    hasBackButton: { type: Boolean, default: false, required: false }
   },
   methods: {
-    toggleMenu() {
-      this.$store.commit('toggleMenu')
+    logout() {
+        localStorage.removeItem('__knowledge_user')
+        this.$router.push({name: 'auth'})       
+    },
+    goBack() {
+      this.$router.back();
     }
-  }
+  },
 }
 </script>
 
 <style >
   .header {
-    grid-area: header;
     background:linear-gradient(to right, #1e469a, #49a7c1);
-    
+    height: 40px;
     display: flex;
     justify-content: center;
     align-content: center;
+    margin-bottom: 20px;
   }
   .title {
     font-size: 1.2rem;
@@ -79,5 +77,22 @@ export default {
   header.header > a.toogle:hover {
     background-color: rgba(0, 0, 0, 0.2);
     color: #fff;
+  }
+
+  .icon {
+    padding: 5px;
+    color: #fff;
+    border: none;
+    background-color: transparent;
+    margin-left: 10px;
+  }
+
+  .icon:focus {
+    border: none;
+  }
+
+  .icon:hover {
+    color: #fff;
+    text-decoration: none;
   }
 </style>

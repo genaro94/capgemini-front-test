@@ -1,30 +1,39 @@
 <template>
-  <div id='app' :class="{'hide-menu' : !isMenuVisible}">
-
-  <Header title="Banco Capgemini" 
-          :hideToogle="false"
-          :hideUserDropdwon="false"
-  >
-  </Header>
-  <Menu></Menu>
-  <Content></Content>
-  <Footer></Footer>
-
+  <div id='app'>
+    <Content/>
+    <Footer/>
   </div>
-
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import Header from '@/components/template/Header'
-import Menu from '@/components/template/Menu'
 import Content from '@/components/template/Content'
 import Footer from '@/components/template/Footer'
+import api from '@/utils/api'
 
 export default {
   name: 'App',
-  components: {Header, Menu, Content, Footer},
-  computed: mapState(['isMenuVisible'])
+  components: {Content, Footer},
+  data: function() {
+      return {
+        user: {}
+      }
+  },
+  methods: {
+    async getUser() {
+      if(localStorage.getItem('__knowledge_user')) {
+        try{        
+          const userDetail = await api.get('users/details')
+          this.user  = userDetail.data
+          this.showButton = true;
+        }catch(error){
+            this.$toasted.error(error.response.data.message)
+        }
+      }
+    }    
+  },
+  created() {
+    this.getUser()
+  }
 
 }
 </script>
@@ -35,25 +44,11 @@ export default {
   }
   body{
     margin: 0;
+    background-color: #eeffee !important; 
   }
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smooting: grayscale;
-
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 60px 1fr 40px;
-    grid-template-columns: 300px 1fr;
-    grid-template-areas:
-        "header header"
-        "menu content"
-        "menu footer"
   }
 
-  #app.hide-menu {
-        grid-template-areas:
-        "header header"
-        "content content"
-        "footer footer"
-  }
 </style>

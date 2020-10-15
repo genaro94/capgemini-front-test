@@ -1,45 +1,45 @@
 <template>
     <div class="form-debit">
-        <b-form @submit="approve">
-            <b-row>
-                <b-col md="6" sm="12">
-                    <b-form-group label="Agência" label-for="agency">
-                        <b-form-input id="agency" type="text" 
-                            v-mask="'####-#'"
-                            v-model="account.agency" required />
-                    </b-form-group>
-                </b-col>
-                <b-col md="6" sm="12">
-                    <b-form-group label="Número da Conta" label-for="number">
-                        <b-form-input id="number" type="text" 
-                            v-mask="'##.###-#'"
-                            v-model="account.number" required/>
-                    </b-form-group>
-                </b-col>
-            </b-row>
+        <form @submit="approve($event)">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="agency">Agência</label>
+                     <the-mask class="form-control" id="agency"
+                                :mask="['###', '####-#', '####-#']"
+                                 required  v-model="account.agency" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="number">Número da Conta</label>
+                     <the-mask class="form-control" id="number"
+                                :mask="['###', '##.###-#', '##.###-#']"
+                                 required  v-model="account.number" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="name">Proprietário(a) da Conta</label>
+                    <input type="text" class="form-control" v-model="account.name"
+                            id="name" required >
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="cpf">CPF</label>
+                     <the-mask class="form-control" id="cpf"
+                                :mask="['###', '###.###.###-##', '###.###.###-##']"
+                                 required  v-model="account.cpf" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="value">Valor a Depositar</label>
+                     <money id="value" class="form-control"
+                         v-model="account.value"
+                         v-bind="money" required ></money>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="btn btn-primary">Aprovar</button>
+                <button type="button" class="btn btn-secondary" @click="reset">Cancelar</button>
+            </div>
+        </form>
 
-            <b-row>
-                <b-col md="4" sm="12">
-                    <b-form-group label="Proprietário(a) da Conta" label-for="name">
-                        <b-form-input id="name" type="text" v-model="account.name" required/>
-                    </b-form-group>
-                </b-col>
-                <b-col md="4" sm="12">
-                    <b-form-group label="CPF" label-for="cpf">
-                        <b-form-input id="cpf" v-mask="'###.###.###-##'"
-                            type="text" v-model="account.cpf" required/>
-                    </b-form-group>
-                </b-col>
-                <b-col md="4" sm="12">
-                    <b-form-group label="Valor a Depositar" label-for="value">
-                        <b-form-input id="value" type="text" v-model="account.value"
-                         v-money="money" required/>
-                    </b-form-group>
-                </b-col>
-            </b-row>
-            <b-button variant="primary" type="submit">Aprovar</b-button>
-            <b-button class="ml-2" @click="reset">Cancelar</b-button>
-        </b-form>
     </div>
 </template>
 
@@ -68,7 +68,8 @@ export default {
       reset() {
           this.account = {}
       },
-      async approve(){
+      async approve(event){
+          event.preventDefault()
           try{
             const debit = await api.post('deposits', this.account)
             this.$toasted.success(debit.data.message)
@@ -80,3 +81,10 @@ export default {
   },
 }
 </script>
+
+<style>
+    .actions button{
+        margin-right: 10px;
+
+    }
+</style>

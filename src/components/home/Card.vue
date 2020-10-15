@@ -5,7 +5,7 @@
       </div>
       <div class="cards-info">
         <span class="cards-title">{{title}}</span>
-        <span class="cards-value">{{value}}</span>
+        <span class="cards-value" >{{value}}</span>
       </div>
     </button>
 </template>

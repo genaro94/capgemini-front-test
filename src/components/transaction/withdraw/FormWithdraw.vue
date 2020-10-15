@@ -1,17 +1,17 @@
 <template>
     <div class="form-debit">
-        <b-form @submit="approve">
-            <b-row>
-                <b-col md="12" sm="12">
-                    <b-form-group label="Valor a Depositar" label-for="value">
-                        <b-form-input id="value" type="text" 
-                            v-model="account.value" required/>
-                    </b-form-group>
-                </b-col>
-            </b-row>
-            <b-button variant="primary" type="submit">Aprovar</b-button>
-            <b-button class="ml-2" @click="reset">Cancelar</b-button>
-        </b-form>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="value">Valor a Depositar</label>
+                  <money id="value" class="form-control"
+                      v-model="balance"
+                      v-bind="money" required ></money>
+            </div>
+        </div>
+        <div class="actions">
+            <button class="btn btn-primary" @click="approve">Aprovar</button>
+            <button type="button" class="btn btn-secondary" @click="reset">Cancelar</button>
+        </div>
     </div>
 </template>
 
@@ -25,8 +25,7 @@ export default {
   directives: {mask},
   data: function(){
       return {
-        account: {},
-        value: 0,
+        balance: 0,
         money: {
           decimal: ',',
           thousands: '.',
@@ -38,11 +37,11 @@ export default {
   },
   methods: {
       reset() {
-          this.account = {}
+          this.balance = 0
       },
       async approve(){
           try{
-            const withdraw = await api.post('withdraws', this.account)
+            const withdraw = await api.post('withdraws', {value: this.balance})
             this.$toasted.success(withdraw.data.message)
             this.reset()
           }catch(error){

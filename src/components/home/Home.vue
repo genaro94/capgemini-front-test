@@ -6,7 +6,7 @@
       <PageTitle icon="fa fa-home" main="Dashboard"
           sub="Painel do Banco" />
       <div class="cards">
-        <Card class="cards-details" title="Saldo" :value="account.balance" 
+        <Card class="cards-details" title="Saldo" :value="balance" 
               icon="fa fa-money" color="#3bc480" />
         <Card class="cards-details" title="Saque" value="Realizar operação" 
               icon="fa fa-handshake-o" color="#d54d50" :goToRoute="() => goToRoute('/transaction/withdraws')" />        
@@ -29,16 +29,16 @@ export default {
   components: { PageTitle, Card, Loading, Header },
   data: function() {
     return {
-      account: {}, 
-      loading: false,     
+      balance: 0, 
+      loading: false, 
     }
   },
   methods: {
     async getBalance() {
       this.loading = true;      
       try{        
-        const balance = await api.get('balances')
-        this.account  = balance.data
+        const accountBalance = await api.get('balances')
+        this.balance  = accountBalance.data.balance.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
         this.loading = false;
       }catch(error){
           this.$toasted.error(error.response.data.message)
